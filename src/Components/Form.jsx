@@ -20,6 +20,7 @@ const Form = () => {
       .then((response) => {
         console.log(response);
         toast.success("Task added successfully");
+        form.reset();
       });
   };
 

@@ -27,7 +27,7 @@ const Tasks = () => {
       const doneData = Data.filter((data) => data.options === "Done");
       setDone(doneData);
     });
-  }, []);
+  }, [Todo, InProgress, done]);
 
   return (
     <div>
@@ -49,7 +49,7 @@ const Tasks = () => {
         {/* in progress card */}
         <div className="md:w-[350px] bg-slate-300 rounded-lg shadow">
           <div className="px-3">
-            <h1 className="my-3 font-semibold">
+            <h1 className="my-3 font-semibold text-center">
               In progress {InProgress.length}
             </h1>
 
@@ -65,7 +65,9 @@ const Tasks = () => {
         {/* done card */}
         <div className="md:w-[350px]  bg-slate-300 rounded-lg shadow">
           <div className="px-3">
-            <h1 className="my-3 font-semibold">Done {done.length}</h1>
+            <h1 className="my-3 font-semibold text-center">
+              Done {done.length}
+            </h1>
 
             {/* single card */}
             {done.map((doneTask) => (

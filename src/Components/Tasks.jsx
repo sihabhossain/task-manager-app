@@ -12,38 +12,46 @@ const Tasks = () => {
 
   // fetching data from database
   useEffect(() => {
-    axios.get(`http://localhost:5000/tasks`).then((response) => {
-      const Data = response.data;
+    axios
+      .get(`https://task-manager-server-alpha-ecru.vercel.app/tasks`)
+      .then((response) => {
+        const Data = response.data;
 
-      // filtering todo data
-      const todoData = Data.filter((data) => data.options === "Todo");
-      setTodo(todoData);
+        // filtering todo data
+        const todoData = Data.filter((data) => data.options === "Todo");
+        setTodo(todoData);
 
-      // filtering in progress data
-      const progressData = Data.filter(
-        (data) => data.options === "In Progress"
-      );
-      setInProgress(progressData);
+        // filtering in progress data
+        const progressData = Data.filter(
+          (data) => data.options === "In Progress"
+        );
+        setInProgress(progressData);
 
-      // filtering done data
-      const doneData = Data.filter((data) => data.options === "Done");
-      setDone(doneData);
-    });
+        // filtering done data
+        const doneData = Data.filter((data) => data.options === "Done");
+        setDone(doneData);
+      });
   }, [Todo, InProgress, done]);
 
   // delete todo
   const deleteTodo = (id) => {
     console.log(id);
-    axios.delete(`http://localhost:5000/delete-todo/${id}`).then((response) => {
-      console.log(response.data);
-      toast.success("Task Deleted");
-    });
+    axios
+      .delete(
+        `https://task-manager-server-alpha-ecru.vercel.app/delete-todo/${id}`
+      )
+      .then((response) => {
+        console.log(response.data);
+        toast.success("Task Deleted");
+      });
   };
 
   // delete progress
   const deleteProgress = (id) => {
     axios
-      .delete(`http://localhost:5000/delete-progress/${id}`)
+      .delete(
+        `https://task-manager-server-alpha-ecru.vercel.app/delete-progress/${id}`
+      )
       .then((response) => {
         console.log(response.data);
         toast.success("Task Deleted");
@@ -52,24 +60,34 @@ const Tasks = () => {
 
   // delete done
   const deleteDone = (id) => {
-    axios.delete(`http://localhost:5000/delete-done/${id}`).then((response) => {
-      console.log(response.data);
-      toast.success("Task Deleted");
-    });
+    axios
+      .delete(
+        `https://task-manager-server-alpha-ecru.vercel.app/delete-done/${id}`
+      )
+      .then((response) => {
+        console.log(response.data);
+        toast.success("Task Deleted");
+      });
   };
 
   // update todo
   const updateTodo = (id) => {
-    axios.patch(`http://localhost:5000/update-todo/${id}`).then((response) => {
-      console.log(response.data);
-      toast.success("Marked as done");
-    });
+    axios
+      .patch(
+        `https://task-manager-server-alpha-ecru.vercel.app/update-todo/${id}`
+      )
+      .then((response) => {
+        console.log(response.data);
+        toast.success("Marked as done");
+      });
   };
 
   // update progress
   const updateProgress = (id) => {
     axios
-      .patch(`http://localhost:5000/update-progress/${id}`)
+      .patch(
+        `https://task-manager-server-alpha-ecru.vercel.app/update-progress/${id}`
+      )
       .then((response) => {
         console.log(response.data);
         toast.success("Marked as done");

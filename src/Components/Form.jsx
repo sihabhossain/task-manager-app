@@ -12,7 +12,7 @@ const Form = () => {
 
     // send data to database
     axios
-      .post(`http://localhost:5000/tasks`, {
+      .post(`https://task-manager-server-alpha-ecru.vercel.app/tasks`, {
         title,
         description,
         options,

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { Toaster, toast } from "react-hot-toast";
 
 const Form = () => {
   const handleSubmit = () => {
@@ -9,6 +10,7 @@ const Form = () => {
     const description = form.description.value;
     const options = form.option.value;
 
+    // send data to database
     axios
       .post(`http://localhost:5000/tasks`, {
         title,
@@ -17,6 +19,7 @@ const Form = () => {
       })
       .then((response) => {
         console.log(response);
+        toast.success("Task added successfully");
       });
   };
 
@@ -55,6 +58,7 @@ const Form = () => {
           Add Task
         </button>
       </form>
+      <Toaster></Toaster>
     </div>
   );
 };

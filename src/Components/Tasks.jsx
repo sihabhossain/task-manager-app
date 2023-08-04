@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 import TodoTask from "./todoTask";
 import ProgressTask from "./ProgressTask";
 import DoneTask from "./doneTask";
+import { toast } from "react-hot-toast";
 
 const Tasks = () => {
   const [Todo, setTodo] = useState([]);
   const [InProgress, setInProgress] = useState([]);
   const [done, setDone] = useState([]);
 
+  // fetching data from database
   useEffect(() => {
     axios.get(`http://localhost:5000/tasks`).then((response) => {
       const Data = response.data;
@@ -29,6 +31,33 @@ const Tasks = () => {
     });
   }, [Todo, InProgress, done]);
 
+  // delete todo
+  const deleteTodo = (id) => {
+    console.log(id);
+    axios.delete(`http://localhost:5000/delete-todo/${id}`).then((response) => {
+      console.log(response.data);
+      toast.success("Task Deleted");
+    });
+  };
+
+  // delete progress
+  const deleteProgress = (id) => {
+    axios
+      .delete(`http://localhost:5000/delete-progress/${id}`)
+      .then((response) => {
+        console.log(response.data);
+        toast.success("Task Deleted");
+      });
+  };
+
+  // delete done
+  const deleteDone = (id) => {
+    axios.delete(`http://localhost:5000/delete-done/${id}`).then((response) => {
+      console.log(response.data);
+      toast.success("Task Deleted");
+    });
+  };
+
   return (
     <div>
       <h1 className="text-center my-8 font-semibold text-2xl">Task list</h1>
@@ -42,7 +71,11 @@ const Tasks = () => {
             </h1>
             {/* single card */}
             {Todo.map((todoTask) => (
-              <TodoTask todoTask={todoTask} key={todoTask._id}></TodoTask>
+              <TodoTask
+                deleteTodo={deleteTodo}
+                todoTask={todoTask}
+                key={todoTask._id}
+              ></TodoTask>
             ))}
           </div>
         </div>
@@ -56,6 +89,7 @@ const Tasks = () => {
             {/* single card */}
             {InProgress.map((progressTask) => (
               <ProgressTask
+                deleteProgress={deleteProgress}
                 progressTask={progressTask}
                 key={progressTask._id}
               ></ProgressTask>
@@ -71,7 +105,11 @@ const Tasks = () => {
 
             {/* single card */}
             {done.map((doneTask) => (
-              <DoneTask doneTask={doneTask} key={doneTask._id}></DoneTask>
+              <DoneTask
+                deleteDone={deleteDone}
+                doneTask={doneTask}
+                key={doneTask._id}
+              ></DoneTask>
             ))}
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProgressTask = ({ progressTask }) => {
+const ProgressTask = ({ progressTask, deleteProgress }) => {
   return (
     <div>
       <div className="h-[180px] bg-white mb-3 p-5 rounded-lg">
@@ -12,7 +12,10 @@ const ProgressTask = ({ progressTask }) => {
           <button className="mr-3 px-3 py-1 bg-blue-700 rounded-lg font-semibold text-white">
             Edit
           </button>
-          <button className="px-3 py-1 bg-pink-700 font-semibold text-white rounded-lg">
+          <button
+            onClick={() => deleteProgress(progressTask._id)}
+            className="px-3 py-1 bg-pink-700 font-semibold text-white rounded-lg"
+          >
             Delete
           </button>
         </div>

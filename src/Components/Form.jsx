@@ -59,7 +59,6 @@ const Form = () => {
           Add Task
         </button>
       </form>
-      <Toaster></Toaster>
     </div>
   );
 };

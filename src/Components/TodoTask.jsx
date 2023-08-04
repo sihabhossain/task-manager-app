@@ -1,6 +1,6 @@
 import React from "react";
 
-const TodoTask = ({ todoTask, deleteTodo }) => {
+const TodoTask = ({ todoTask, deleteTodo, updateTodo }) => {
   return (
     <div>
       <div className="h-[180px] bg-white mb-3 p-5 rounded-lg">
@@ -9,8 +9,11 @@ const TodoTask = ({ todoTask, deleteTodo }) => {
           <p className="text-gray-500">{todoTask.description}</p>
         </div>
         <div className="my-3">
-          <button className="mr-3 px-3 py-1 bg-blue-700 rounded-lg font-semibold text-white">
-            Edit
+          <button
+            onClick={() => updateTodo(todoTask._id)}
+            className="mr-3 px-3 py-1 bg-blue-700 rounded-lg font-semibold text-white"
+          >
+            Mark as done
           </button>
           <button
             onClick={() => deleteTodo(todoTask._id)}

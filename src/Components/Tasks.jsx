@@ -58,6 +58,24 @@ const Tasks = () => {
     });
   };
 
+  // update todo
+  const updateTodo = (id) => {
+    axios.patch(`http://localhost:5000/update-todo/${id}`).then((response) => {
+      console.log(response.data);
+      toast.success("Marked as done");
+    });
+  };
+
+  // update progress
+  const updateProgress = (id) => {
+    axios
+      .patch(`http://localhost:5000/update-progress/${id}`)
+      .then((response) => {
+        console.log(response.data);
+        toast.success("Marked as done");
+      });
+  };
+
   return (
     <div className="max-w-[1280px] mx-auto">
       <h1 className="text-center my-8 font-semibold text-2xl">Task list</h1>
@@ -72,6 +90,7 @@ const Tasks = () => {
             {/* single card */}
             {Todo.map((todoTask) => (
               <TodoTask
+                updateTodo={updateTodo}
                 deleteTodo={deleteTodo}
                 todoTask={todoTask}
                 key={todoTask._id}
@@ -89,6 +108,7 @@ const Tasks = () => {
             {/* single card */}
             {InProgress.map((progressTask) => (
               <ProgressTask
+                updateProgress={updateProgress}
                 deleteProgress={deleteProgress}
                 progressTask={progressTask}
                 key={progressTask._id}

@@ -59,10 +59,10 @@ const Tasks = () => {
   };
 
   return (
-    <div>
+    <div className="max-w-[1280px] mx-auto">
       <h1 className="text-center my-8 font-semibold text-2xl">Task list</h1>
       <hr className="md:mx-[100px]" />
-      <div className="max-w-[1200px] w-full h-full  md:mx-[95px] gap-5 grid grid-cols-1 md:grid-cols-3 mx-auto mt-5 mb-10">
+      <div className="max-w-[1200px] items-center justify-center  md:mx-[95px] gap-5 grid grid-cols-1 md:grid-cols-3 mx-auto mt-5 mb-10">
         {/* todo card */}
         <div className="md:w-[350px]  bg-slate-300 rounded-lg shadow">
           <div className="px-3">

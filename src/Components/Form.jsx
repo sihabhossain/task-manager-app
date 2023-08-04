@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 
 const Form = () => {
@@ -8,13 +9,15 @@ const Form = () => {
     const description = form.description.value;
     const options = form.option.value;
 
-    const addTask = {
-      title,
-      description,
-      options,
-    };
-
-    console.log(addTask);
+    axios
+      .post(`http://localhost:5000/tasks`, {
+        title,
+        description,
+        options,
+      })
+      .then((response) => {
+        console.log(response);
+      });
   };
 
   return (
